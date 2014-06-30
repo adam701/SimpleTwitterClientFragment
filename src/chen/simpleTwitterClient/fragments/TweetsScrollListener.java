@@ -1,15 +1,19 @@
 package chen.simpleTwitterClient.fragments;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.util.Log;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import chen.simpleTwitterClient.activities.TweetAdapter;
 import chen.simpleTwitterClient.models.Tweet;
+
 import com.loopj.android.http.JsonHttpResponseHandler;
+
 import eu.erikw.PullToRefreshListView;
 import eu.erikw.PullToRefreshListView.OnRefreshListener;
 
@@ -42,7 +46,9 @@ public abstract class TweetsScrollListener implements OnScrollListener,
 
 		// If the total item count is zero and the previous isn't, assume the
 		// list is invalidated and should be reset back to initial state
-		if (!isInitialized.get() || tweetsAdapter.getCount() <= 0) {
+		Log.d("DEBUG", "Laoding status is " + loading.get());
+		if (!isInitialized.get() || tweetsAdapter.getCount() <= 0 || loading.getAndSet(true)) {
+			Log.d("DEBUG", "Previous is still loading");
 			return;
 		}
 		long currentMaxId = tweetsAdapter.getItem(tweetsAdapter.getCount() - 1)
@@ -52,16 +58,17 @@ public abstract class TweetsScrollListener implements OnScrollListener,
 		if (currentMaxId > max) {
 			max = currentMaxId;
 		}
-		if (loading.get() && (currentMaxId < max)) {
-			loading.set(false);
+		//loading.get() && 
+		if ((currentMaxId < max)) {
+			//loading.set(false);
 			max = currentMaxId;
 		}
-		Log.d("DEBUG", "Laoding status is " + loading.get());
-		if (!loading.get()
-				&& (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
+		if ((totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
 			Log.d("DEBUG", "Begin to load ");
 			loadingMoreData(-1, max, this.COUNT, new TweetScrollDownLoadingJsonHttpResponseHandler());
-			loading.set(true);
+			//loading.set(true);
+		} else{
+			loading.set(false);
 		}
 	}
 
@@ -126,9 +133,9 @@ public abstract class TweetsScrollListener implements OnScrollListener,
 				JSONObject jsonObject;
 				try {
 					jsonObject = jsonArray.getJSONObject(i);
-					Log.d("DEBUG", jsonObject.toString());
+					//Log.d("DEBUG", jsonObject.toString());
 					Tweet tweet = Tweet.fromJSON(jsonObject);
-					Log.d("DEBUG", "Final tweet is " + tweet.toString());
+					//Log.d("DEBUG", "Final tweet is " + tweet.toString());
 					tweetsAdapter.insert(tweet, 0);
 				} catch (JSONException e) {
 					Log.d("DEBUG", "Fail to get json Object!");
@@ -183,9 +190,9 @@ public abstract class TweetsScrollListener implements OnScrollListener,
 				JSONObject jsonObject;
 				try {
 					jsonObject = jsonArray.getJSONObject(i);
-					Log.d("DEBUG", jsonObject.toString());
+					//Log.d("DEBUG", jsonObject.toString());
 					Tweet tweet = Tweet.fromJSON(jsonObject);
-					Log.d("DEBUG", "Final tweet is " + tweet.toString());
+					//Log.d("DEBUG", "Final tweet is " + tweet.toString());
 					tweetsAdapter.add(tweet);
 				} catch (JSONException e) {
 					Log.d("DEBUG", "Fail to get json Object!");
