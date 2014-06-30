@@ -1,0 +1,31 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${packageName}.${activityClass}" >
+
+    <FrameLayout
+        android:id="@+id/fglTweets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" >
+    </FrameLayout>
+
+  <android.support.v4.view.ViewPager
+      android:id="@+id/vpPager"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/indicator" >
+             
+    </android.support.v4.view.ViewPager>
+
+	<com.viewpagerindicator.TitlePageIndicator
+	android:id="@+id/indicator"
+	android:layout_height="wrap_content"
+	android:textColor="#6E7678"
+	android:background="#424647"
+	android:layout_width="fill_parent" />
+  
+</RelativeLayout>

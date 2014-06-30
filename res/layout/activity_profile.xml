@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${packageName}.${activityClass}" >
+
+    <ImageView
+        android:id="@+id/imgProfileImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_edit" />
+
+    <TextView
+        android:id="@+id/tvNameProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/imgProfileImage"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tvNumberOfFollower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/imgProfileImage"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tvFollowers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvNumberOfFollower"
+        android:layout_alignBottom="@+id/tvNumberOfFollower"
+        android:layout_toRightOf="@+id/tvNumberOfFollower"
+        android:layout_marginLeft="3dp"
+        android:text="@string/followers" />
+
+    <TextView
+        android:id="@+id/tvNumberOfFriends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvFollowers"
+        android:layout_alignBottom="@+id/tvFollowers"
+        android:layout_toRightOf="@+id/tvFollowers"
+        android:layout_marginLeft="6dp"
+        android:gravity="center"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tvFriends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvNumberOfFriends"
+        android:layout_alignBottom="@+id/tvNumberOfFriends"
+        android:layout_toRightOf="@+id/tvNumberOfFriends"
+        android:layout_marginLeft="3dp"
+        android:text="@string/Following" />
+
+    <FrameLayout
+   		android:id="@+id/fglProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tvNumberOfFollower"
+        android:layout_marginTop="5dp" >
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvScreenNameProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvNameProfile"
+        android:layout_below="@+id/tvNameProfile"
+        android:text="TextView"
+        android:textColor="#B0A7A5"
+        android:textSize="12sp" />
+
+</RelativeLayout>
